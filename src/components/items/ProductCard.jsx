@@ -2,25 +2,53 @@ import Link from "next/link";
 
 const ProductCard = ({ item }) => {
   return (
-    <div className="border rounded-lg p-4 hover:shadow-lg transition bg-white">
-      <img
-        src={item.image}
-        alt={item.title}
-        className="h-48 w-full object-cover rounded"
-      />
+    <div className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+      {/* Product Image */}
+      <div className="relative overflow-hidden">
+        <img
+          src={item.image}
+          alt={item.title}
+          className="h-60 w-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
 
-      <h3 className="text-xl font-semibold mt-3">{item.title}</h3>
+        {/* Badge */}
+        <span className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-medium px-3 py-1 rounded-full">
+          New Arrival
+        </span>
+      </div>
 
-      <p className="text-gray-600 text-sm mt-2">{item.shortDescription}</p>
+      {/* Content */}
+      <div className="p-5">
+        {/* Category */}
+        <p className="text-sm text-slate-500 mb-2">
+          {item.category || "Product"}
+        </p>
 
-      <p className="mt-2 font-bold text-blue-600">${item.price}</p>
+        {/* Title */}
+        <h3 className="text-lg font-bold text-slate-900 line-clamp-1">
+          {item.title}
+        </h3>
 
-      <Link
-        href={`/items/${item.id}`}
-        className="inline-block mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        View Details
-      </Link>
+        {/* Description */}
+        <p className="text-slate-600 text-sm mt-3 line-clamp-2">
+          {item.shortDescription}
+        </p>
+
+        {/* Price */}
+        <div className="mt-4 flex items-center justify-between">
+          <div>
+            <p className="text-2xl font-bold text-blue-600">${item.price}</p>
+          </div>
+        </div>
+
+        {/* Button */}
+        <Link
+          href={`/items/${item.id}`}
+          className="mt-5 w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-medium transition duration-300"
+        >
+          View Details
+        </Link>
+      </div>
     </div>
   );
 };
