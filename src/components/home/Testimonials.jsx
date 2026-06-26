@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -71,10 +71,11 @@ const Testimonials = () => {
             >
               <div className="flex items-center gap-4 mb-4">
                 <div className="relative w-12 h-12">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
                     fill
+                    sizes="48px"
                     className="rounded-full object-cover"
                   />
                 </div>

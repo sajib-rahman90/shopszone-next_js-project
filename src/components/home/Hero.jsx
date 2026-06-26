@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -47,12 +47,13 @@ const Hero = () => {
           className="md:w-1/2"
         >
           <div className="relative w-full h-[320px] md:h-[420px] rounded-2xl overflow-hidden shadow-lg">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1523275335684-37898b6baf30"
               alt="Hero Image"
               fill
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
         </motion.div>

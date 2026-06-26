@@ -1,14 +1,17 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductCard = ({ item }) => {
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
       {/* Product Image */}
-      <div className="relative overflow-hidden">
-        <img
+      <div className="relative overflow-hidden h-60 w-full">
+        <Image
           src={item.image}
           alt={item.title}
-          className="h-60 w-full object-cover group-hover:scale-110 transition-transform duration-500"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
         />
 
         {/* Badge */}

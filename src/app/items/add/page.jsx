@@ -66,14 +66,15 @@ export default function AddItemPage() {
 
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 bg-white p-6 shadow rounded"
+          className="space-y-4 bg-white p-6 shadow-lg rounded-xl"
         >
           <input
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="Title"
-            className="w-full border p-3 rounded"
+            required
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
@@ -81,7 +82,8 @@ export default function AddItemPage() {
             value={formData.shortDescription}
             onChange={handleChange}
             placeholder="Short Description"
-            className="w-full border p-3 rounded"
+            required
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <textarea
@@ -89,15 +91,21 @@ export default function AddItemPage() {
             value={formData.fullDescription}
             onChange={handleChange}
             placeholder="Full Description"
-            className="w-full border p-3 rounded"
+            required
+            rows={4}
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
+            type="number"
             name="price"
             value={formData.price}
             onChange={handleChange}
             placeholder="Price"
-            className="w-full border p-3 rounded"
+            required
+            min="0"
+            step="0.01"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
@@ -105,18 +113,21 @@ export default function AddItemPage() {
             value={formData.category}
             onChange={handleChange}
             placeholder="Category"
-            className="w-full border p-3 rounded"
+            required
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <input
+            type="url"
             name="image"
             value={formData.image}
             onChange={handleChange}
             placeholder="Image URL"
-            className="w-full border p-3 rounded"
+            required
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
-          <button className="bg-blue-600 text-white px-6 py-3 rounded w-full">
+          <button className="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-lg w-full font-medium">
             Add Product
           </button>
         </form>

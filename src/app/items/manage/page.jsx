@@ -1,39 +1,51 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import products from "@/data/products";
 import PrivateRoute from "@/utils/PrivateRoute";
 import toast, { Toaster } from "react-hot-toast";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ManageItemsPage() {
-  const [allProducts, setAllProducts] = useState(() => {
-    const localProducts = JSON.parse(
-      localStorage.getItem("products") || "[]"
-    );
+  const [allProducts, setAllProducts] = useState(products);
+  const [isMounted, setIsMounted] = useState(false);
 
-    return [...products, ...localProducts];
-  });
+  useEffect(() => {
+    try {
+      const local = JSON.parse(localStorage.getItem("products") || "[]");
+      if (local.length > 0) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setAllProducts([...products, ...local]);
+      }
+    } catch (e) {}
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMounted(true);
+  }, []);
 
   // DELETE FUNCTION
   const handleDelete = (id) => {
-    const updatedProducts = allProducts.filter(
-      (item) => item.id !== id
-    );
-
-    setAllProducts(updatedProducts);
-
-    // update localStorage (only custom products)
-    const localOnly = updatedProducts.filter(
-      (item) => item.id > 1000000000
-    );
-
-    localStorage.setItem(
-      "products",
-      JSON.stringify(localOnly)
-    );
-
+    const updatedLocal = allProducts.filter((item) => item.id !== id);
+    setAllProducts(updatedLocal);
+    const localOnly = updatedLocal.filter((item) => item.id > 1000000000);
+    localStorage.setItem("products", JSON.stringify(localOnly));
     toast.success("Product deleted successfully");
   };
+
+  if (!isMounted) {
+    return (
+      <PrivateRoute>
+        <div className="max-w-6xl mx-auto px-5 py-10">
+          <h1 className="text-3xl font-bold mb-6">Manage Products</h1>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="h-64 bg-gray-200 animate-pulse rounded-lg"></div>
+            ))}
+          </div>
+        </div>
+      </PrivateRoute>
+    );
+  }
 
   return (
     <PrivateRoute>
@@ -58,10 +70,15 @@ export default function ManageItemsPage() {
               >
 
                 {/* Image */}
-                <img
-                  src={item.image}
-                  className="h-40 w-full object-cover rounded"
-                />
+                <div className="relative h-40 w-full mb-3 rounded overflow-hidden">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
 
                 {/* Info */}
                 <h3 className="text-xl font-semibold mt-3">
@@ -86,11 +103,12 @@ export default function ManageItemsPage() {
                     Delete
                   </button>
 
-                  <button
-                    className="bg-gray-200 px-4 py-2 rounded"
+                  <Link
+                    href={`/items/${item.id}`}
+                    className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
                   >
                     View
-                  </button>
+                  </Link>
 
                 </div>
 

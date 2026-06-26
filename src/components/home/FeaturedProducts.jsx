@@ -2,6 +2,7 @@
 
 import products from "@/data/products";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -54,11 +55,13 @@ const FeaturedProducts = () => {
               className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
             >
               {/* Image */}
-              <div className="overflow-hidden">
-                <img
+              <div className="relative overflow-hidden h-56 w-full">
+                <Image
                   src={product.image}
                   alt={product.title}
-                  className="h-56 w-full object-cover hover:scale-110 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover hover:scale-110 transition-transform duration-500"
                 />
               </div>
 

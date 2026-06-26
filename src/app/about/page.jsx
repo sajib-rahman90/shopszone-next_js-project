@@ -8,6 +8,8 @@ import {
 } from "react-icons/fa";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   const features = [
@@ -65,9 +67,11 @@ export default function AboutPage() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7 }}
           >
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200"
               alt="About Us"
+              width={1200}
+              height={400}
               className="rounded-2xl shadow-lg w-full h-[400px] object-cover"
             />
           </motion.div>
@@ -195,12 +199,12 @@ export default function AboutPage() {
             with Revenio Shop.
           </p>
 
-          <a
+          <Link
             href="/items"
             className="inline-block mt-8 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg transition"
           >
             Explore Products
-          </a>
+          </Link>
         </motion.div>
       </section>
     </main>
