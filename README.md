@@ -1,5 +1,9 @@
 # 🚀 Next.js Firebase Assessment Project
 
+# GitHub Repository link: https://github.com/sajib-rahman90/shopszone-next_js-project
+
+# Live demo: https://shopszone-next-js-project.vercel.app/
+
 ## 📌 Project Overview
 
 This project is a modern, fully responsive web application built with **Next.js (App Router)** and **Firebase Authentication**. It demonstrates public and protected routing, user authentication, dynamic routing, responsive UI design, and item management features.
