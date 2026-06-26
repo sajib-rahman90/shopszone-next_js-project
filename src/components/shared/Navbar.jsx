@@ -26,13 +26,16 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center relative">
-        <Link href="/" className="text-2xl font-bold text-blue-600 tracking-tight">
-          RevenioShop
+        <Link
+          href="/"
+          className="text-2xl font-bold text-blue-600 tracking-tight"
+        >
+          ShopsZone
         </Link>
 
         {/* Mobile Button */}
-        <button 
-          className="md:hidden text-2xl text-gray-700 focus:outline-none" 
+        <button
+          className="md:hidden text-2xl text-gray-700 focus:outline-none"
           onClick={() => setMenu(!menu)}
         >
           {menu ? <FaTimes /> : <FaBars />}
@@ -40,12 +43,30 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-8 items-center">
-          <Link href="/" className="text-gray-600 hover:text-blue-600 font-medium transition">Home</Link>
-          <Link href="/items" className="text-gray-600 hover:text-blue-600 font-medium transition">Items</Link>
-          <Link href="/about" className="text-gray-600 hover:text-blue-600 font-medium transition">About</Link>
+          <Link
+            href="/"
+            className="text-gray-600 hover:text-blue-600 font-medium transition"
+          >
+            Home
+          </Link>
+          <Link
+            href="/items"
+            className="text-gray-600 hover:text-blue-600 font-medium transition"
+          >
+            Items
+          </Link>
+          <Link
+            href="/about"
+            className="text-gray-600 hover:text-blue-600 font-medium transition"
+          >
+            About
+          </Link>
 
           {!user ? (
-            <Link href="/login" className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition shadow-sm">
+            <Link
+              href="/login"
+              className="bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition shadow-sm"
+            >
               Login
             </Link>
           ) : (
@@ -54,7 +75,7 @@ const Navbar = () => {
                 onClick={() => setOpen(!open)}
                 className="bg-gray-100 text-gray-800 border border-gray-200 px-4 py-2.5 rounded-lg font-medium flex items-center gap-2 hover:bg-gray-200 transition"
               >
-                {user.email.split('@')[0]}
+                {user.email.split("@")[0]}
                 <span className="text-[10px]">▼</span>
               </button>
 
@@ -75,7 +96,10 @@ const Navbar = () => {
                     Manage Products
                   </Link>
                   <button
-                    onClick={() => { signOut(auth); setOpen(false); }}
+                    onClick={() => {
+                      signOut(auth);
+                      setOpen(false);
+                    }}
                     className="w-full text-left px-5 py-3 text-sm text-red-600 hover:bg-red-50 transition"
                   >
                     Logout
@@ -91,21 +115,63 @@ const Navbar = () => {
       {menu && (
         <div className="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl pb-6 px-5 z-40">
           <div className="flex flex-col gap-4 mt-5">
-            <Link href="/" className="text-gray-700 font-medium text-lg" onClick={() => setMenu(false)}>Home</Link>
-            <Link href="/items" className="text-gray-700 font-medium text-lg" onClick={() => setMenu(false)}>Items</Link>
-            <Link href="/about" className="text-gray-700 font-medium text-lg" onClick={() => setMenu(false)}>About</Link>
+            <Link
+              href="/"
+              className="text-gray-700 font-medium text-lg"
+              onClick={() => setMenu(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/items"
+              className="text-gray-700 font-medium text-lg"
+              onClick={() => setMenu(false)}
+            >
+              Items
+            </Link>
+            <Link
+              href="/about"
+              className="text-gray-700 font-medium text-lg"
+              onClick={() => setMenu(false)}
+            >
+              About
+            </Link>
 
             {!user ? (
-              <Link href="/login" className="bg-blue-600 text-center text-white px-5 py-3 rounded-lg font-medium mt-4 shadow-sm" onClick={() => setMenu(false)}>
+              <Link
+                href="/login"
+                className="bg-blue-600 text-center text-white px-5 py-3 rounded-lg font-medium mt-4 shadow-sm"
+                onClick={() => setMenu(false)}
+              >
                 Login
               </Link>
             ) : (
               <div className="flex flex-col gap-4 pt-4 mt-2 border-t border-gray-100">
-                <p className="text-sm text-gray-500">Signed in as <br/><span className="font-semibold text-gray-800 text-base">{user.email}</span></p>
-                <Link href="/items/add" className="text-gray-700 font-medium" onClick={() => setMenu(false)}>Add Product</Link>
-                <Link href="/items/manage" className="text-gray-700 font-medium" onClick={() => setMenu(false)}>Manage Products</Link>
+                <p className="text-sm text-gray-500">
+                  Signed in as <br />
+                  <span className="font-semibold text-gray-800 text-base">
+                    {user.email}
+                  </span>
+                </p>
+                <Link
+                  href="/items/add"
+                  className="text-gray-700 font-medium"
+                  onClick={() => setMenu(false)}
+                >
+                  Add Product
+                </Link>
+                <Link
+                  href="/items/manage"
+                  className="text-gray-700 font-medium"
+                  onClick={() => setMenu(false)}
+                >
+                  Manage Products
+                </Link>
                 <button
-                  onClick={() => { signOut(auth); setMenu(false); }}
+                  onClick={() => {
+                    signOut(auth);
+                    setMenu(false);
+                  }}
                   className="text-left text-red-600 font-medium mt-2 bg-red-50 p-3 rounded-lg"
                 >
                   Logout
